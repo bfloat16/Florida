@@ -80,6 +80,8 @@ jobs:
   create_release:
     needs: check_version
     runs-on: ubuntu-22.04
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     if: needs.check_version.outputs.ALREADY_RELEASE != '1'
 
     steps:
@@ -95,6 +97,8 @@ jobs:
 
   android_build:
     runs-on: ubuntu-22.04
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     needs: [check_version, create_release]
 
     steps:
